@@ -19,10 +19,10 @@
     
 }
 
-- (TodoItem *)init:(NSString *)withText
+- (TodoItem *)initWithText:(NSString *)text
 {
     self = [self init];
-    self.item = withText;
+    self.item = text;
     
     return self;
 }

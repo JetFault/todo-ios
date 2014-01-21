@@ -13,6 +13,6 @@
 @property (strong, nonatomic) NSString* item;
 
 - (TodoItem *)init;
-- (TodoItem *)init:(NSString *)withText;
+- (TodoItem *)initWithText:(NSString *)text;
 
 @end

@@ -33,6 +33,8 @@
     
     self.title = @"Todo";
     
+    [self loadTodoItems];
+    
     [self.todoItems insertObject:[[TodoItem alloc] init] atIndex:0];
     UINib *todoItemCellNib = [UINib nibWithNibName:@"TodoItemCell" bundle:nil];
     [self.tableView registerNib:todoItemCellNib forCellReuseIdentifier:@"TodoItemCell"];
@@ -123,6 +125,36 @@
     [self.todoItems insertObject:[[TodoItem alloc] init] atIndex:0];
     
     [self.tableView reloadData];
+    
+    [self saveToDoItems];
+}
+
+- (void)saveToDoItems
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSMutableArray * arr = [[NSMutableArray alloc] init];
+    
+    for(TodoItem *todoItem in self.todoItems)
+    {
+        [arr addObject:todoItem.item];
+    }
+    
+    [defaults setObject:arr forKey:@"TodoItems"];
+    [defaults synchronize];
+}
+
+- (void)loadTodoItems
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSArray *arr = [defaults objectForKey:@"TodoItems"];
+    
+    for(NSString *str in arr)
+    {
+        TodoItem *item = [[TodoItem alloc] initWithText:str];
+        [self.todoItems addObject:item];
+    }
 }
 
 @end
