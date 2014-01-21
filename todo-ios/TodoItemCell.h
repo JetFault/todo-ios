@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TodoItem.h"
 
 @interface TodoItemCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UITextField *todoTextField;
+@property (strong, nonatomic) TodoItem *model;
 
 @end

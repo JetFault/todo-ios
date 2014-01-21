@@ -26,4 +26,9 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)updateModel:(id)sender {
+    self.model.item = self.todoTextField.text;
+}
+
+
 @end

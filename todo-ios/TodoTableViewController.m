@@ -8,8 +8,11 @@
 
 #import "TodoTableViewController.h"
 #import "TodoItemCell.h"
+#import "TodoItem.h"
 
 @interface TodoTableViewController ()
+
+@property (nonatomic, strong) NSMutableArray* todoItems;
 
 @end
 
@@ -19,7 +22,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        self.todoItems = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -27,12 +30,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.title = @"Todo";
+    
+    [self.todoItems insertObject:[[TodoItem alloc] init] atIndex:0];
+    UINib *todoItemCellNib = [UINib nibWithNibName:@"TodoItemCell" bundle:nil];
+    [self.tableView registerNib:todoItemCellNib forCellReuseIdentifier:@"TodoItemCell"];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonSystemItemAdd target:self action:@selector(addTodoItem:)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,16 +56,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 2;
+    return [self.todoItems count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,66 +74,55 @@
     static NSString *CellIdentifier = @"TodoItemCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    TodoItemCell *todoCell = ((TodoItemCell*)cell);
+    
+    todoCell.model = self.todoItems[[indexPath row]];
+    
+    todoCell.todoTextField.text = todoCell.model.item;
     
     return cell;
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [self.todoItems removeObjectAtIndex:[indexPath row]];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        [self addTodoItem:nil];
+    }
 }
-*/
 
-/*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
+    [self.todoItems exchangeObjectAtIndex:[fromIndexPath row] withObjectAtIndex:[toIndexPath row]];
 }
-*/
 
-/*
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the item to be re-orderable.
     return YES;
 }
-*/
 
-/*
-#pragma mark - Table view delegate
 
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)addTodoItem:(id)sender
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-
-    // Pass the selected object to the new view controller.
+    [self.todoItems insertObject:[[TodoItem alloc] init] atIndex:0];
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    [self.tableView reloadData];
 }
- 
- */
 
 @end

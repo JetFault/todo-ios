@@ -22,6 +22,9 @@
 		89DE46EF188DFC64009BDDE7 /* todo_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DE46EE188DFC64009BDDE7 /* todo_iosTests.m */; };
 		89DFD890188E02410031535B /* TodoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD88E188E02410031535B /* TodoTableViewController.m */; };
 		89DFD891188E02410031535B /* TodoTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DFD88F188E02410031535B /* TodoTableViewController.xib */; };
+		89DFD895188E06CF0031535B /* TodoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD893188E06CF0031535B /* TodoItemCell.m */; };
+		89DFD896188E06CF0031535B /* TodoItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DFD894188E06CF0031535B /* TodoItemCell.xib */; };
+		89DFD89A188E2C5D0031535B /* TodoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 89DFD899188E2C5D0031535B /* TodoItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,11 @@
 		89DFD88D188E02410031535B /* TodoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewController.h; sourceTree = "<group>"; };
 		89DFD88E188E02410031535B /* TodoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewController.m; sourceTree = "<group>"; };
 		89DFD88F188E02410031535B /* TodoTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoTableViewController.xib; sourceTree = "<group>"; };
+		89DFD892188E06CF0031535B /* TodoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItemCell.h; sourceTree = "<group>"; };
+		89DFD893188E06CF0031535B /* TodoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItemCell.m; sourceTree = "<group>"; };
+		89DFD894188E06CF0031535B /* TodoItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodoItemCell.xib; sourceTree = "<group>"; };
+		89DFD898188E2C5D0031535B /* TodoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoItem.h; sourceTree = "<group>"; };
+		89DFD899188E2C5D0031535B /* TodoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoItem.m; sourceTree = "<group>"; };
 		E79840A8FF214668B4FB846B /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,13 +126,17 @@
 		89DE46CF188DFC64009BDDE7 /* todo-ios */ = {
 			isa = PBXGroup;
 			children = (
+				89DFD89B188E2CB60031535B /* Model */,
+				89DFD892188E06CF0031535B /* TodoItemCell.h */,
+				89DFD893188E06CF0031535B /* TodoItemCell.m */,
+				89DFD894188E06CF0031535B /* TodoItemCell.xib */,
+				89DFD88D188E02410031535B /* TodoTableViewController.h */,
+				89DFD88E188E02410031535B /* TodoTableViewController.m */,
+				89DFD88F188E02410031535B /* TodoTableViewController.xib */,
 				89DE46D8188DFC64009BDDE7 /* AppDelegate.h */,
 				89DE46D9188DFC64009BDDE7 /* AppDelegate.m */,
 				89DE46DB188DFC64009BDDE7 /* Images.xcassets */,
 				89DE46D0188DFC64009BDDE7 /* Supporting Files */,
-				89DFD88D188E02410031535B /* TodoTableViewController.h */,
-				89DFD88E188E02410031535B /* TodoTableViewController.m */,
-				89DFD88F188E02410031535B /* TodoTableViewController.xib */,
 			);
 			path = "todo-ios";
 			sourceTree = "<group>";
@@ -156,6 +168,15 @@
 				89DE46EB188DFC64009BDDE7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		89DFD89B188E2CB60031535B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				89DFD898188E2C5D0031535B /* TodoItem.h */,
+				89DFD899188E2C5D0031535B /* TodoItem.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +258,7 @@
 			files = (
 				89DFD891188E02410031535B /* TodoTableViewController.xib in Resources */,
 				89DE46D4188DFC64009BDDE7 /* InfoPlist.strings in Resources */,
+				89DFD896188E06CF0031535B /* TodoItemCell.xib in Resources */,
 				89DE46DC188DFC64009BDDE7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,7 +313,9 @@
 			files = (
 				89DFD890188E02410031535B /* TodoTableViewController.m in Sources */,
 				89DE46DA188DFC64009BDDE7 /* AppDelegate.m in Sources */,
+				89DFD895188E06CF0031535B /* TodoItemCell.m in Sources */,
 				89DE46D6188DFC64009BDDE7 /* main.m in Sources */,
+				89DFD89A188E2C5D0031535B /* TodoItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
